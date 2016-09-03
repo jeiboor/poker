@@ -39,7 +39,7 @@ local function check_member_super(cb_extra, success, result)
       end
       data[tostring(groups)][tostring(msg.to.id)] = msg.to.id
       save_data(_config.moderation.data, data)
-	  local text = 'SuperGroup has been added!'
+	  local text = '🔱 سوپر گروه فعال شد'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -63,7 +63,7 @@ local function check_member_superrem(cb_extra, success, result)
       end
       data[tostring(groups)][tostring(msg.to.id)] = nil
       save_data(_config.moderation.data, data)
-	  local text = 'SuperGroup has been removed'
+	  local text = 'سوپر گروه غیر فعال شد 😌'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -179,7 +179,7 @@ local function lock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'yes' then
-    return '*Link posting is already locked'
+    return 'ارسال لینک از قبل ممنوع بود است! ✴'
   else
     data[tostring(target)]['settings']['lock_link'] = 'yes'
     save_data(_config.moderation.data, data)
@@ -193,11 +193,11 @@ local function unlock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'no' then
-    return '*Link posting is not locked'
+    return 'ارسال لینک ممنوع است است! 💈'
   else
     data[tostring(target)]['settings']['lock_link'] = 'no'
     save_data(_config.moderation.data, data)
-    return '*Link posting has been unlocked'
+    return 'ارسال لینک آزاد است :)'
   end
 end
 
@@ -210,11 +210,11 @@ local function lock_group_spam(msg, data, target)
   end
   local group_spam_lock = data[tostring(target)]['settings']['lock_spam']
   if group_spam_lock == 'yes' then
-    return '*SuperGroup spam is already locked'
+    return 'ارسال پیام پشت سر هم ممنوع بوده است! ✔'
   else
     data[tostring(target)]['settings']['lock_spam'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '*SuperGroup spam has been locked'
+    return 'ارسال پیام پشت سر هم ممنوع شد 🔥'
   end
 end
 
@@ -224,11 +224,11 @@ local function unlock_group_spam(msg, data, target)
   end
   local group_spam_lock = data[tostring(target)]['settings']['lock_spam']
   if group_spam_lock == 'no' then
-    return '*SuperGroup spam is not locked'
+    return 'ارسال پیام پشت سر هم آزاد بوده است 💢'
   else
     data[tostring(target)]['settings']['lock_spam'] = 'no'
     save_data(_config.moderation.data, data)
-    return '*SuperGroup spam has been unlocked'
+    return 'ارسال پیام پشت سر هم آزاد شد 💣'
   end
 end
 
@@ -555,7 +555,7 @@ end
 		end
 	end
   local settings = data[tostring(target)]['settings']
-  local text = "SuperGroup settings:\n\nLock Links > "..settings.lock_link.."\nLock Flood > "..settings.flood.."\nFlood sensitivity > "..NUM_MSG_MAX.."\nLock Spam > "..settings.lock_spam.."\nLock Arabic/Persian > "..settings.lock_arabic.."\nLock Member > "..settings.lock_member.."\nLock RTL > "..settings.lock_rtl.."\nLock TGservice > "..settings.lock_tgservice.."\nLock Sticker > "..settings.lock_sticker.."\nPublic > "..settings.public.."\nStrict Settings > "..settings.strict
+  local text = "😈SuperGroup😈 "..msg.to.print_name.." settings:\n\n🔝Lock Links🔝 : "..settings.lock_link.."\n 🔛Lock Flood🔛 : "..settings.flood.."\n✴Flood sensitivity✴ : "..NUM_MSG_MAX.."\n🔘Lock Spam🔘 : "..settings.lock_spam.."\n👑Lock👑 💩Arabic💩/👑Persian👑 : "..settings.lock_arabic.."\n💓Lock Member💓 : "..settings.lock_member.."\n👽Lock RTL👽 : "..settings.lock_rtl.."\n🌜Lock TGservice🌛 : "..settings.lock_tgservice.."\n👤Lock Sticker👤 : "..settings.lock_sticker.."\n💛Public💛 : "..settings.public.."\n😮Strict Settings😮 : "..settings.strict.."\n♠Channel♠ : @DarkSideTM\n🔻Creator🔺 : @pokerN"
   return text
 end
 
