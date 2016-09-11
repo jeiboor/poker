@@ -201,7 +201,7 @@ function load_config( )
   else
     f:close()
   end
-  local config = loadfile ("./data/config.lua")()
+  local config = loadfile ("./data/config.lua")
   for v,user in pairs(config.sudo_users) do
     print("Sudo user: " .. user)
   end
