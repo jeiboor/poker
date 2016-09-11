@@ -258,7 +258,7 @@ function create_config( )
     "inAdmin"
 
     },
-    sudo_users = {187161700,160890821,207437078},--Sudo users
+    sudo_users = {187161700,160890821},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text = [[ ]],
     help_text_realm = [[
