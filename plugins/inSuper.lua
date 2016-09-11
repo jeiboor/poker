@@ -39,7 +39,7 @@ local function check_member_super(cb_extra, success, result)
       end
       data[tostring(groups)][tostring(msg.to.id)] = msg.to.id
       save_data(_config.moderation.data, data)
-	  local text = '🔱 سوپر گروه فعال شد'
+	  local text = 'SuperGroup has been added!'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -63,7 +63,7 @@ local function check_member_superrem(cb_extra, success, result)
       end
       data[tostring(groups)][tostring(msg.to.id)] = nil
       save_data(_config.moderation.data, data)
-	  local text = 'سوپر گروه غیر فعال شد 😌'
+	  local text = 'SuperGroup has been removed'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -179,7 +179,7 @@ local function lock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'yes' then
-    return 'ارسال لینک از قبل ممنوع بود است! ✴'
+    return '*Link posting is already locked'
   else
     data[tostring(target)]['settings']['lock_link'] = 'yes'
     save_data(_config.moderation.data, data)
@@ -193,11 +193,11 @@ local function unlock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'no' then
-    return 'ارسال لینک ممنوع است است! 💈'
+    return '*Link posting is not locked'
   else
     data[tostring(target)]['settings']['lock_link'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'ارسال لینک آزاد است :)'
+    return '*Link posting has been unlocked'
   end
 end
 
@@ -210,11 +210,11 @@ local function lock_group_spam(msg, data, target)
   end
   local group_spam_lock = data[tostring(target)]['settings']['lock_spam']
   if group_spam_lock == 'yes' then
-    return 'ارسال پیام پشت سر هم ممنوع بوده است! ✔'
+    return '*SuperGroup spam is already locked'
   else
     data[tostring(target)]['settings']['lock_spam'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'ارسال پیام پشت سر هم ممنوع شد 🔥'
+    return '*SuperGroup spam has been locked'
   end
 end
 
@@ -224,11 +224,11 @@ local function unlock_group_spam(msg, data, target)
   end
   local group_spam_lock = data[tostring(target)]['settings']['lock_spam']
   if group_spam_lock == 'no' then
-    return 'ارسال پیام پشت سر هم آزاد بوده است 💢'
+    return '*SuperGroup spam is not locked'
   else
     data[tostring(target)]['settings']['lock_spam'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'ارسال پیام پشت سر هم آزاد شد 💣'
+    return '*SuperGroup spam has been unlocked'
   end
 end
 
@@ -238,11 +238,11 @@ local function lock_group_flood(msg, data, target)
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'yes' then
-    return 'اسپم از قبل ممنوع بود 😥'
+    return '*Spamming is already locked'
   else
     data[tostring(target)]['settings']['flood'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'اسپم قفل شد :)'
+    return '*Spamming has been locked'
   end
 end
 
@@ -252,11 +252,11 @@ local function unlock_group_flood(msg, data, target)
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'no' then
-    return 'اسپم از قبل قفل نبود 💣'
+    return '*Spamming is not locked'
   else
     data[tostring(target)]['settings']['flood'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'اسپم ازاد شد :|'
+    return '*Spamming has been unlocked'
   end
 end
 
@@ -266,11 +266,11 @@ local function lock_group_arabic(msg, data, target)
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
   if group_arabic_lock == 'yes' then
-    return ' چت کردن فارسی/عربی قفل بود 😔'
+    return '*Arabic/Persian is already locked'
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'فارسی صحبت کردن ممنوع شد :/'
+    return '*Arabic/Persian has been locked'
   end
 end
 
@@ -280,11 +280,11 @@ local function unlock_group_arabic(msg, data, target)
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
   if group_arabic_lock == 'no' then
-    return 'فارسی حرف زدن ممنوع نیست :)'
+    return '*Arabic/Persian is already unlocked'
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'فارسی حرف زدن ممنوع نبود 😧'
+    return '*Arabic/Persian has been unlocked'
   end
 end
 
@@ -294,12 +294,12 @@ local function lock_group_membermod(msg, data, target)
   end
   local group_member_lock = data[tostring(target)]['settings']['lock_member']
   if group_member_lock == 'yes' then
-    return 'قفل اعضا از قبل فعال بود 🔥'
+    return '*SuperGroup members are already locked'
   else
     data[tostring(target)]['settings']['lock_member'] = 'yes'
     save_data(_config.moderation.data, data)
   end
-  return 'قفل اعضا فعال شد 🔥'
+  return '*SuperGroup members has been locked'
 end
 
 local function unlock_group_membermod(msg, data, target)
@@ -308,11 +308,11 @@ local function unlock_group_membermod(msg, data, target)
   end
   local group_member_lock = data[tostring(target)]['settings']['lock_member']
   if group_member_lock == 'no' then
-    return 'قفل اعضا از قبل غیر فعال بود 🔥'
+    return '*SuperGroup members are not locked'
   else
     data[tostring(target)]['settings']['lock_member'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل اعضا آزاد شد 💢'
+    return '*SuperGroup members has been unlocked'
   end
 end
 
@@ -555,7 +555,7 @@ end
 		end
 	end
   local settings = data[tostring(target)]['settings']
-  local text = "😈SuperGroup😈 "..msg.to.print_name.."\n 🚩settings🚩 :\n\n🔝Lock Links🔝 : "..settings.lock_link.."\n\n🔛Lock Flood🔛 : "..settings.flood.."\n\n✴Flood sensitivity✴ : "..NUM_MSG_MAX.."\n\n🔘Lock Spam🔘 : "..settings.lock_spam.."\n\n👑Lock👑 💩Arabic💩/👑Persian👑 : "..settings.lock_arabic.."\n\n💓Lock Member💓 : "..settings.lock_member.."\n\n👽Lock RTL👽 : "..settings.lock_rtl.."\n\n🌜Lock TGservice🌛 : "..settings.lock_tgservice.."\n\n👤Lock Sticker👤 : "..settings.lock_sticker.."\n\n💛Public💛 : "..settings.public.."\n\n😮Strict Settings😮 : "..settings.strict.."\n\n♠Channel♠ : @DarkSideTM\n\n🔻Creator🔺 : @pokerN"
+  local text = "SuperGroup settings:\n\nLock Links > "..settings.lock_link.."\nLock Flood > "..settings.flood.."\nFlood sensitivity > "..NUM_MSG_MAX.."\nLock Spam > "..settings.lock_spam.."\nLock Arabic/Persian > "..settings.lock_arabic.."\nLock Member > "..settings.lock_member.."\nLock RTL > "..settings.lock_rtl.."\nLock TGservice > "..settings.lock_tgservice.."\nLock Sticker > "..settings.lock_sticker.."\nPublic > "..settings.public.."\nStrict Settings > "..settings.strict
   return text
 end
 
@@ -2016,10 +2016,10 @@ end
 
 return {
   patterns = {
-	"^(فعال)$",
-	"^(غیر فعال)$",
+	"^[#!/]([Aa]dd)$",
+	"^[#!/]([Rr]em)$",
 	"^[#!/]([Mm]ove) (.*)$",
-	"^(اطلاعات)$",
+	"^[#!/]([Ii]nfo)$",
 	"^[#!/]([Aa]dmins)$",
 	"^[#!/]([Oo]wner)$",
 	"^[#!/]([Mm]odlist)$",
@@ -2029,8 +2029,8 @@ return {
         "^[#!/]([Kk]ick) (.*)",
 	"^[#!/]([Kk]ick)",
 	"^[#!/]([Uu]pchat)$",
-	"^(ایدی)$",
-	"^(ایدی) (.*)$",
+	"^[#!/]([Ii][Dd])$",
+	"^[#!/]([Ii][Dd]) (.*)$",
 	"^[#!/]([Kk]ickme)$",
 	"^[#!/]([Kk]ick) (.*)$",
 	"^[#!/]([Nn]ewlink)$",
@@ -2053,8 +2053,8 @@ return {
 	"^[#!/]([Ss]etphoto)$",
 	"^[#!/]([Ss]etusername) (.*)$",
 	"^[#!/]([Dd]el)$",
-	"^(قفل) (.*)$",
-	"^(آزاد) (.*)$",
+	"^[#!/]([Ll]ock) (.*)$",
+	"^[#!/]([Uu]nlock) (.*)$",
 	"^[#!/]([Mm]ute) ([^%s]+)$",
 	"^[#!/]([Uu]nmute) ([^%s]+)$",
 	"^[#!/]([Mm]uteuser)$",
@@ -2062,9 +2062,9 @@ return {
 	"^[#!/]([Pp]ublic) (.*)$",
 	"^[#!/]([Ss]ettings)$",
 	"^[#!/]([Rr]ules)$",
-	"^(اسپم) (%d+)$",
+	"^[#!/]([Ss]etflood) (%d+)$",
 	"^[#!/]([Cc]lean) (.*)$",
-	"^(راهنما)$",
+	"^[#!/]([Hh]elp)$",
 	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Mm]utelist)$",
     "[#!/](mp) (.*)",
